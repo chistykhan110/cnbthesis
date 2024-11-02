@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Three-Column Quiz</title>
+    <style>
+        .option {
+            display: inline-block;
+            padding: 8px 12px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: #e0e0e0;
+        }
+
+        .option.selected {
+            background-color: red;
+            color: white;
+        }
+        #submitbtn {
+            background-color: #4CAF50; /* Green background */
+            color: white;              /* White text */
+            padding: 10px 20px;        /* Padding for spacing */
+            border: none;              /* Remove border */
+            border-radius: 5px;        /* Rounded corners */
+            font-size: 16px;           /* Font size */
+            cursor: pointer;           /* Pointer cursor on hover */
+            transition: background-color 0.3s; /* Smooth hover transition */
+          }
+          
+          #submitbtn:hover {
+            background-color: #45a049; /* Darker green on hover */
+          }
+    </style>
+</head>
+<body>
+
+<div>
+    <h2>DATA COLLECTION CB</h2>
+
+    <!-- Input for Name -->
+    <div>
+        <label for="name">Coordinates</label>
+        <input type="text" id="name">
+        <button onclick="pasteText('name')">Paste</button>
+    </div>
+<br>
+    <!-- Input for Roll -->
+    <div>
+        <label for="roll">Highway Percentage</label>
+        <input type="text" id="roll">
+        <button onclick="pasteText('roll')">Paste</button>
+    </div>
+<br>
+    <!-- Input for Class -->
+    <div>
+        <label for="class">Local Road Percentage</label>
+        <input type="text" id="class">
+        <button onclick="pasteText('class')">Paste</button>
+    </div>
+
+    <h2>Fill Everything</h2>
+
+    <div style="display: flex; justify-content: space-between;">
+        <!-- Column 1 (4 Questions) -->
+        <div style="width: 30%;">
+            <!-- Question 1 -->
+            <div data-question="1">
+                <p>১. ক্রসিং এ রোডের এপ্রোচ কয়টা?</p>
+                <span class="option" onclick="selectOption(this)">৩</span>
+                <span class="option" onclick="selectOption(this)">৪</span>
+                <span class="option" onclick="selectOption(this)">৫</span>
+                <span class="option" onclick="selectOption(this)">৬</span>
+            </div>
+
+            <!-- Question 2 -->
+            <div data-question="2">
+                <p>২. জেব্রা ক্রসিং দেখা যায়?</p>
+                <span class="option" onclick="selectOption(this)">এক টাতেও নাই</span>
+                <span class="option" onclick="selectOption(this)">১ টায় আছে</span>
+                <span class="option" onclick="selectOption(this)">২ টায় আছে</span>
+                <span class="option" onclick="selectOption(this)">৩ টায় আছে</span>
+                <span class="option" onclick="selectOption(this)">৪ টায় আছে</span>
+                <span class="option" onclick="selectOption(this)">৫ টায় আছে</span>
+            </div>
+
+            <!-- Question 3 -->
+            <div data-question="3">
+                <p>৩. স্পিড ব্রেকার দেখা যায়?</p>
+                <span class="option" onclick="selectOption(this)">এক টাতেও নাই</span>
+                <span class="option" onclick="selectOption(this)">১ টায় আছে</span>
+                <span class="option" onclick="selectOption(this)">২ টায় আছে</span>
+                <span class="option" onclick="selectOption(this)">৩ টায় আছে</span>
+                <span class="option" onclick="selectOption(this)">৪ টায় আছে</span>
+                <span class="option" onclick="selectOption(this)">৫ টায় আছে</span>
+            </div>
+
+            <!-- Question 4 -->
+            <div data-question="4">
+                <p>৪. পেডিস্ট্রিয়ান আইল্যান্ড দেখা যায়?</p>
+                <span class="option" onclick="selectOption(this)">এক টাতেও নাই</span>
+                <span class="option" onclick="selectOption(this)">১ টায় আছে</span>
+                <span class="option" onclick="selectOption(this)">২ টায় আছে</span>
+                <span class="option" onclick="selectOption(this)">৩ টায় আছে</span>
+                <span class="option" onclick="selectOption(this)">৪ টায় আছে</span>
+                <span class="option" onclick="selectOption(this)">৫ টায় আছে</span>
+            </div>
+        </div>
+
+        <!-- Column 2 (3 Questions) -->
+        <div style="width: 30%;">
+            <!-- Question 5 -->
+            <div data-question="5">
+                <p>৫. ভিজিবিলিটি কেমন?</p>
+                <span class="option" onclick="selectOption(this)">চারিদিক থেকে আসা গাড়ি দেখা যায়</span>
+                <span class="option" onclick="selectOption(this)">পথচারীর জন্য নির্দেশনা আছে</span>
+                <span class="option" onclick="selectOption(this)">ব্লাইন্ড স্পট রয়েছে</span>
+            </div>
+
+            <!-- Question 6 -->
+            <div data-question="6">
+                <p>৬. রাস্তার পার হ‌ওয়া কেন কঠিন হতে পারে?</p>
+                <span class="option" onclick="selectOption(this)">রাস্তা চ‌ওড়া বেশি, গাড়ি স্পিডে চলে</span>
+                <span class="option" onclick="selectOption(this)">রাস্তায় উল্টোদিকে গাড়ি চলে আসে</span>
+                <span class="option" onclick="selectOption(this)">বেশি সংখ্যক রাস্তার এপ্রোচ হ‌ওয়ায় এলোমেলো ভাবে গাড়ি চলে আসে</span>
+                <span class="option" onclick="selectOption(this)">রাস্তায় অনেক বেশি গ্যাঞ্জাম থাকে সবসময়</span>
+            </div>
+
+            <!-- Question 7 -->
+            <div data-question="7">
+                <p>৭. রাস্তা পারাপারে কেমন সহযোগিতা পাওয়া যায়?</p>
+                <span class="option" onclick="selectOption(this)">ফুট ওভার ব্রিজ আছে</span>
+                <span class="option" onclick="selectOption(this)">ট্রাফিক পুলিশ অনেক এক্টিভ</span>
+                <span class="option" onclick="selectOption(this)">রাস্তায় গ্যাঞ্জাম নাই</span>
+            </div>
+        </div>
+
+        <!-- Column 3 (3 Questions) -->
+        <div style="width: 30%;">
+            <!-- Question 8 -->
+            <div data-question="8">
+                <p>৮. ফুটপাতের অবস্থা কেমন?</p>
+                <span class="option" onclick="selectOption(this)">আছে তবে পর্যাপ্ত না</span>
+                <span class="option" onclick="selectOption(this)">হকারদের দখলে, কষ্ট করে হাটা যায়</span>
+                <span class="option" onclick="selectOption(this)">রিকশাওয়ালারা দাড়ায় থাকে (হাটা যায়)</span>
+                <span class="option" onclick="selectOption(this)">হকার + রিকশা + লোকের গ্যাঞ্জাম</span>
+                <span class="option" onclick="selectOption(this)">মেইন রাস্তা দিয়ে হাটা লাগে</span>
+                <span class="option" onclick="selectOption(this)">রেলিং দেয়া আদর্শ ফুটপাত</span>
+            </div>
+
+            <!-- Question 9 -->
+            <div data-question="9">
+                <p>৯. রাস্তায় কি চলে?</p>
+                <span class="option" onclick="selectOption(this)">বাস + রিকশা + লেগুনা + কার</span>
+                <span class="option" onclick="selectOption(this)">বাস + মোটরাইজড বাহন অনলি</span>
+                <span class="option" onclick="selectOption(this)">বাস চলে না + রিকশা বেশি + প্রাইভেট কার</span>
+                <span class="option" onclick="selectOption(this)">বাস নেই, কম রিকশা + কার</span>
+            </div>
+
+            <!-- Question 10 -->
+            <div data-question="10">
+                <p>১০. লোকজন ক্রসিং কে কতটুকু নিরাপদ মনে করে?</p>
+                <span class="option" onclick="selectOption(this)">নিরাপদ</span>
+                <span class="option" onclick="selectOption(this)">ঝুঁকিপূর্ণ মাত্রা ১</span>
+                <span class="option" onclick="selectOption(this)">ঝুঁকিপূর্ণ মাত্রা ২</span>
+                <span class="option" onclick="selectOption(this)">ঝুঁকিপূর্ণ মাত্রা ৩</span>
+                <span class="option" onclick="selectOption(this)">ঝুঁকিপূর্ণ মাত্রা ৪</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Submit Button -->
+    <button id="submitbtn" onclick="submitQuiz()">Submit</button>
+</div>
+
+<script>
+    async function pasteText(inputId) {
+        try {
+            const text = await navigator.clipboard.readText();
+            document.getElementById(inputId).value = text;
+        } catch (error) {
+            alert("Failed to read clipboard contents. Please allow clipboard access.");
+        }
+    }
+
+    function selectOption(element) {
+        const options = element.parentNode.querySelectorAll('.option');
+        options.forEach(option => option.classList.remove('selected'));
+        element.classList.add('selected');
+    }
+
+    function submitQuiz() {
+        const name = document.getElementById('name').value.trim();
+        const roll = document.getElementById('roll').value.trim();
+        const className = document.getElementById('class').value.trim();
+
+        // Check if student information is complete
+        if (!name || !roll || !className) {
+            alert("Please fill out  information fields  before submitting.");
+            return;
+        }
+
+        const questions = document.querySelectorAll('[data-question]');
+        const answers = [];
+        const unansweredQuestions = [];
+
+        // Check if each question has been answered
+        questions.forEach(question => {
+            const selectedOption = question.querySelector('.option.selected');
+            if (selectedOption) {
+                // Find the index of the selected option within the question and add 1 to get the serial number
+                const options = Array.from(question.querySelectorAll('.option'));
+                const answerNumber = options.indexOf(selectedOption) + 1;
+                answers.push(answerNumber);
+            } else {
+                unansweredQuestions.push(question.getAttribute('data-question'));
+            }
+        });
+
+        // Alert for unanswered questions or generate file
+        if (unansweredQuestions.length > 0) {
+            alert(`Please answer the following questions: ${unansweredQuestions.join(', ')}`);
+            return;
+        }
+
+        // Format file content
+        const fileContent = `<${name}>\n<${roll}>\n<${className}>\n` + answers.map(answer => `<${answer}>`).join('\n');
+
+        // Create and download the file
+        const blob = new Blob([fileContent], { type: 'text/plain' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = `${name}.txt`;
+        link.click();
+    }
+</script>
+
+</body>
+</html>
